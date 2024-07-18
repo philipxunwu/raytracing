@@ -1,0 +1,3 @@
+/home/pwuxun/raytracing/build/CMakeFiles/Raytracing.dir
+/home/pwuxun/raytracing/build/CMakeFiles/edit_cache.dir
+/home/pwuxun/raytracing/build/CMakeFiles/rebuild_cache.dir

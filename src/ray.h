@@ -18,7 +18,7 @@ class ray {
         const point3& origin() const { return orig; }
         const vec3& direction() const { return dir; }
 
-        //Calculating current position of ray given a time t
+        //Calculating current position of ray given a time 
         point3 at(double t) const {
             return orig + t * dir;
         } 

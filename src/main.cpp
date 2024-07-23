@@ -1,23 +1,43 @@
-#include <iostream>
+#include "raytracing.h"
 
-#include "vec3.h"
 #include "color.h"
 #include "ray.h"
+#include "vec3.h"
 
-color ray_color(const ray& r) {
+#include <iostream>
+
+#include "hittable.h"
+#include "hittable_list.h"
+#include "sphere.h"
+
+//Determines the color for a pixel depending on its corresponding ray
+color ray_color(const ray& r, const hittable& world) {
+    hit_record rec;
+    if (world.hit(r, 0, infinity, rec)) {
+        return 0.5 * (rec.normal + color(1, 1, 1));
+    }
     vec3 unit_ray = unit_vector(r.direction());
     auto y_coordinate = 0.5 * (unit_ray.y() + 1.0);
     return (1.0 - y_coordinate) * color(1.0, 1.0, 1.0) + y_coordinate * color(0.5, 0.7, 1.0);
 
 }
 
-
 int main() {
+
+    //Image
+
     int image_width = 400;
     auto aspect_ratio = 16.0 / 9.0;
 
     int image_height = int(image_width / aspect_ratio);
     image_height = (image_height < 1) ? 1 : image_height;
+
+
+    //World
+
+    hittable_list world;
+    world.add(make_shared<sphere>(point3(0, 0, -1), 0.5));
+    world.add(make_shared<sphere>(point3(0, -100.5,-1), 100));
 
     //Camera
 
@@ -36,7 +56,7 @@ int main() {
 
     auto pixel00 = viewport_upper_left + 0.5 * pixel_horizontal + 0.5 * pixel_vertical;
 
-
+    //Render
 
     std::cout <<"P3\n" << image_width << ' ' << image_height << "\n255\n";
 
@@ -47,8 +67,10 @@ int main() {
             auto ray_direction = pixel_center - camera_center;
             auto r = ray(camera_center, ray_direction);
 
-            color pixel_color = ray_color(r);
+            color pixel_color = ray_color(r, world);
             write_color(std::cout, pixel_color);
         }
     }
 }
+
+

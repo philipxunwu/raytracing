@@ -2,7 +2,7 @@
 #define SPHERE_H
 
 
-#include "vec3.h"
+#include "raytracing.h"
 #include "hittable.h"
 
 //Defining sphere class that derives from hittable. 
@@ -12,7 +12,7 @@ class sphere : public hittable {
             : center(center), radius(fmax(0, radius)) {}
 
         //Determines whether a sphere is hit by a ray and stores information on that collision in a hit_record
-        bool hit(const ray& r, double ray_tmin, double ray_tmax, hit_record& rec) const override {
+        bool hit(const ray& r, interval ray_t, hit_record& rec) const override {
             vec3 c_q = center - r.origin();
             vec3 direction = r.direction();
             auto a = dot(direction, direction);
@@ -23,9 +23,9 @@ class sphere : public hittable {
                 return false;
             }
             auto t = (h - sqrt(discriminant)) / a;
-            if (t <= ray_tmin || t >= ray_tmax) {
+            if (!ray_t.surrounds(t)) {
                 t = (h + sqrt(discriminant)) / a;
-                if (t <= ray_tmin || t >= ray_tmax) {
+                if (!ray_t.surrounds(t)) {
                     return false;
                 }
             }

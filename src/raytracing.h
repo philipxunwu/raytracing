@@ -27,9 +27,10 @@ inline double radians_to_degrees(double radians) {
 
 //Headers
 
-//#include "vec3.h"
-//#include "color.h"
-//#include "ray.h"
+#include "vec3.h"
+#include "color.h"
+#include "ray.h"
+#include "interval.h"
 
 
 #endif

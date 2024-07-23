@@ -189,8 +189,9 @@ CMakeFiles/Raytracing.dir/src/main.cpp.o: \
  /usr/include/c++/11/backward/auto_ptr.h \
  /usr/include/c++/11/pstl/glue_memory_defs.h \
  /usr/include/c++/11/pstl/execution_defs.h \
- /home/pwuxun/raytracing/src/color.h /home/pwuxun/raytracing/src/vec3.h \
- /home/pwuxun/raytracing/src/ray.h /home/pwuxun/raytracing/src/hittable.h \
+ /home/pwuxun/raytracing/src/vec3.h /home/pwuxun/raytracing/src/color.h \
+ /home/pwuxun/raytracing/src/ray.h /home/pwuxun/raytracing/src/interval.h \
+ /home/pwuxun/raytracing/src/hittable.h \
  /home/pwuxun/raytracing/src/hittable_list.h /usr/include/c++/11/vector \
  /usr/include/c++/11/bits/stl_vector.h \
  /usr/include/c++/11/bits/stl_bvector.h \

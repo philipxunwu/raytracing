@@ -3,8 +3,7 @@
 
 CMakeFiles/Raytracing.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/stdc-predef.h \
-  ../src/color.h \
-  ../src/vec3.h \
+  ../src/raytracing.h \
   /usr/include/c++/11/cmath \
   /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -208,9 +207,6 @@ CMakeFiles/Raytracing.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/c++/11/bits/ostream.tcc \
   /usr/include/c++/11/istream \
   /usr/include/c++/11/bits/istream.tcc \
-  ../src/ray.h \
-  ../src/hittable.h \
-  ../src/hittable_list.h \
   /usr/include/c++/11/memory \
   /usr/include/c++/11/bits/stl_uninitialized.h \
   /usr/include/c++/11/bits/stl_tempbuf.h \
@@ -236,6 +232,12 @@ CMakeFiles/Raytracing.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/c++/11/backward/auto_ptr.h \
   /usr/include/c++/11/pstl/glue_memory_defs.h \
   /usr/include/c++/11/pstl/execution_defs.h \
+  ../src/vec3.h \
+  ../src/color.h \
+  ../src/ray.h \
+  ../src/interval.h \
+  ../src/hittable.h \
+  ../src/hittable_list.h \
   /usr/include/c++/11/vector \
   /usr/include/c++/11/bits/stl_vector.h \
   /usr/include/c++/11/bits/stl_bvector.h \
@@ -248,6 +250,10 @@ CMakeFiles/Raytracing.dir/src/main.cpp.o: ../src/main.cpp \
 /usr/include/c++/11/bits/vector.tcc:
 
 /usr/include/c++/11/bits/stl_bvector.h:
+
+../src/hittable.h:
+
+../src/vec3.h:
 
 /usr/include/c++/11/bits/shared_ptr_atomic.h:
 
@@ -270,8 +276,6 @@ CMakeFiles/Raytracing.dir/src/main.cpp.o: ../src/main.cpp \
 /usr/include/c++/11/bits/stl_uninitialized.h:
 
 /usr/include/c++/11/memory:
-
-../src/hittable.h:
 
 /usr/include/c++/11/bits/istream.tcc:
 
@@ -379,9 +383,9 @@ CMakeFiles/Raytracing.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/locale.h:
 
-/usr/include/c++/11/bits/ostream.tcc:
+/usr/include/c++/11/bits/allocated_ptr.h:
 
-/usr/include/c++/11/clocale:
+/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
 
@@ -441,12 +445,6 @@ CMakeFiles/Raytracing.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/c++/11/iosfwd:
 
-/usr/include/c++/11/bits/ios_base.h:
-
-/usr/include/x86_64-linux-gnu/bits/fp-logb.h:
-
-/usr/include/c++/11/bits/stl_iterator_base_funcs.h:
-
 /usr/include/features-time64.h:
 
 /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h:
@@ -465,11 +463,11 @@ CMakeFiles/Raytracing.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/c++/11/tr1/gamma.tcc:
 
-/usr/include/features.h:
+/usr/include/c++/11/bits/ios_base.h:
 
-/usr/include/c++/11/bits/atomic_base.h:
+/usr/include/x86_64-linux-gnu/bits/fp-logb.h:
 
-/usr/include/c++/11/ext/numeric_traits.h:
+/usr/include/c++/11/bits/stl_iterator_base_funcs.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
 
@@ -485,6 +483,12 @@ CMakeFiles/Raytracing.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/c++/11/pstl/pstl_config.h:
 
+/usr/include/features.h:
+
+/usr/include/c++/11/bits/atomic_base.h:
+
+/usr/include/c++/11/ext/numeric_traits.h:
+
 /usr/include/x86_64-linux-gnu/bits/timesize.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/cpu_defines.h:
@@ -499,9 +503,7 @@ CMakeFiles/Raytracing.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/types.h:
 
-../src/vec3.h:
-
-/usr/include/x86_64-linux-gnu/bits/iscanonical.h:
+/usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
 
@@ -527,6 +529,8 @@ CMakeFiles/Raytracing.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
 
+../src/raytracing.h:
+
 /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h:
 
 /usr/include/c++/11/bits/unique_ptr.h:
@@ -545,9 +549,9 @@ CMakeFiles/Raytracing.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h:
 
-/usr/include/c++/11/pstl/glue_memory_defs.h:
-
 ../src/color.h:
+
+/usr/include/c++/11/pstl/glue_memory_defs.h:
 
 /usr/include/c++/11/ext/type_traits.h:
 
@@ -579,9 +583,7 @@ CMakeFiles/Raytracing.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/floatn.h:
 
-/usr/include/c++/11/bits/allocated_ptr.h:
-
-/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
+/usr/include/x86_64-linux-gnu/bits/iscanonical.h:
 
 /usr/include/c++/11/ext/new_allocator.h:
 
@@ -622,6 +624,10 @@ CMakeFiles/Raytracing.dir/src/main.cpp.o: ../src/main.cpp \
 /usr/include/c++/11/bits/stl_iterator.h:
 
 /usr/include/c++/11/bits/ptr_traits.h:
+
+/usr/include/c++/11/bits/ostream.tcc:
+
+/usr/include/c++/11/clocale:
 
 /usr/include/c++/11/debug/debug.h:
 
@@ -685,8 +691,6 @@ CMakeFiles/Raytracing.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/c++/11/bits/nested_exception.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h:
-
 /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/wchar.h:
@@ -696,6 +700,8 @@ CMakeFiles/Raytracing.dir/src/main.cpp.o: ../src/main.cpp \
 /usr/include/x86_64-linux-gnu/bits/floatn-common.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/wint_t.h:
+
+../src/interval.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h:
 

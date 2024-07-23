@@ -1,11 +1,5 @@
 #include "raytracing.h"
 
-#include "color.h"
-#include "ray.h"
-#include "vec3.h"
-
-#include <iostream>
-
 #include "hittable.h"
 #include "hittable_list.h"
 #include "sphere.h"
@@ -13,8 +7,8 @@
 //Determines the color for a pixel depending on its corresponding ray
 color ray_color(const ray& r, const hittable& world) {
     hit_record rec;
-    if (world.hit(r, 0, infinity, rec)) {
-        return 0.5 * (rec.normal + color(1, 1, 1));
+    if (world.hit(r, interval(0, infinity), rec)) {
+        return 0.5 * (rec.normal + color(1.0, 1.0, 1.0));
     }
     vec3 unit_ray = unit_vector(r.direction());
     auto y_coordinate = 0.5 * (unit_ray.y() + 1.0);
@@ -65,12 +59,10 @@ int main() {
         for (int i = 0; i < image_width; i++) {
             auto pixel_center = pixel00 + i * pixel_horizontal + j * pixel_vertical;
             auto ray_direction = pixel_center - camera_center;
-            auto r = ray(camera_center, ray_direction);
+            ray r(camera_center, ray_direction);
 
             color pixel_color = ray_color(r, world);
             write_color(std::cout, pixel_color);
         }
     }
 }
-
-

@@ -25,6 +25,16 @@ inline double radians_to_degrees(double radians) {
     return 180.0 * radians / PI;
 }
 
+//Returns within the range of [0, 1)
+inline double random_double() {
+    return rand() / (RAND_MAX + 1.0);
+}
+
+//Returns within the range of [min, max)
+inline double random_double(double min, double max) {
+    return min + (max - min) * random_double();
+}
+
 //Headers
 
 #include "vec3.h"

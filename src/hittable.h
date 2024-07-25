@@ -3,11 +3,14 @@
 
 #include "raytracing.h"
 
+class material;
+
 //A class to store information about a ray-object collision
 class hit_record {
     public: 
         point3 p;
         vec3 normal;
+        shared_ptr<material> mat;
         double t;
 };
 

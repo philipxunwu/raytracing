@@ -3,6 +3,7 @@
 
 #include "raytracing.h"
 #include "hittable.h"
+#include "material.h"
 
 class camera {
     public: 
@@ -82,8 +83,12 @@ class camera {
             }
             hit_record rec;
             if (world.hit(r, interval(0.0001, infinity), rec)) {
-                vec3 direction = random_on_hemisphere(rec.normal);
-                return 0.5 * ray_color(ray(rec.p, direction), depth - 1, world);
+                ray scattered;
+                color attenuation;
+                if (rec.mat -> scatter(r, rec, attenuation, scattered)) {
+                    return attenuation * ray_color(scattered, depth - 1, world);
+                }
+                return color(0, 0, 0);
             }
             vec3 unit_ray = unit_vector(r.direction());
             auto y_coordinate = 0.5 * (unit_ray.y() + 1.0);

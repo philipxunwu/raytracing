@@ -8,8 +8,8 @@
 //Defining sphere class that derives from hittable. 
 class sphere : public hittable {
     public:
-        sphere(const point3& center, double radius) 
-            : center(center), radius(fmax(0, radius)) {}
+        sphere(const point3& center, double radius, shared_ptr<material> mat) 
+            : center(center), radius(fmax(0, radius)), mat(mat) {}
 
         //Determines whether a sphere is hit by a ray and stores information on that collision in a hit_record
         bool hit(const ray& r, interval ray_t, hit_record& rec) const override {
@@ -34,11 +34,13 @@ class sphere : public hittable {
             rec.t = t;
             rec.p = r.at(rec.t);
             rec.normal = (rec.p - center) / radius;
+            rec.mat = mat;
             return true;
         }
     private:
         point3 center;
         double radius;
+        shared_ptr<material> mat;
 };
 
 #endif

@@ -196,4 +196,5 @@ CMakeFiles/Raytracing.dir/src/main.cpp.o: \
  /usr/include/c++/11/bits/stl_vector.h \
  /usr/include/c++/11/bits/stl_bvector.h \
  /usr/include/c++/11/bits/vector.tcc /home/pwuxun/raytracing/src/sphere.h \
- /home/pwuxun/raytracing/src/camera.h
+ /home/pwuxun/raytracing/src/camera.h \
+ /home/pwuxun/raytracing/src/material.h

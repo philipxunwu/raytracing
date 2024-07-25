@@ -243,7 +243,8 @@ CMakeFiles/Raytracing.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/c++/11/bits/stl_bvector.h \
   /usr/include/c++/11/bits/vector.tcc \
   ../src/sphere.h \
-  ../src/camera.h
+  ../src/camera.h \
+  ../src/material.h
 
 
 ../src/camera.h:
@@ -575,6 +576,8 @@ CMakeFiles/Raytracing.dir/src/main.cpp.o: ../src/main.cpp \
 /usr/include/c++/11/tr1/riemann_zeta.tcc:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/c++locale.h:
+
+../src/material.h:
 
 /usr/include/x86_64-linux-gnu/bits/mathcalls.h:
 

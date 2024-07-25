@@ -234,16 +234,19 @@ CMakeFiles/Raytracing.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/c++/11/pstl/execution_defs.h \
   ../src/vec3.h \
   ../src/color.h \
-  ../src/ray.h \
   ../src/interval.h \
+  ../src/ray.h \
   ../src/hittable.h \
   ../src/hittable_list.h \
   /usr/include/c++/11/vector \
   /usr/include/c++/11/bits/stl_vector.h \
   /usr/include/c++/11/bits/stl_bvector.h \
   /usr/include/c++/11/bits/vector.tcc \
-  ../src/sphere.h
+  ../src/sphere.h \
+  ../src/camera.h
 
+
+../src/camera.h:
 
 ../src/sphere.h:
 

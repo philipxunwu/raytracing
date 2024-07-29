@@ -56,13 +56,25 @@ class dielectric: public material {
 
         bool scatter(const ray& r_in, const hit_record& rec, color& attenuation, ray& scattered) const override {
             attenuation = color(1.0, 1.0, 1.0);
-            if (dot(r_in.direction(), rec.normal) < 0.0) { //normal is against incoming ray
-                scattered = ray(rec.p, refract(unit_vector(r_in.direction()), rec.normal, 1.0 / refraction_index));
-                return true;
+            vec3 unit_direction = unit_vector(r_in.direction());
+            double ri;
+            vec3 normal;
+            if (dot(r_in.direction(), rec.normal) < 0.0) {
+                normal = rec.normal;
+                ri = 1 / refraction_index;
             } else {
-                scattered = ray(rec.p, refract(unit_vector(r_in.direction()), -1.0 * rec.normal, refraction_index));
-                return true;
+                normal = -1.0 * rec.normal;
+                ri = refraction_index;
             }
+            double cos_theta = std::fmin(dot(-unit_direction, normal), 1.0);
+            double sin_theta = std::sqrt(1.0 - cos_theta * cos_theta);
+
+            if (ri * sin_theta > 1.0) {     //Reflect
+                scattered = ray(rec.p, reflect(unit_direction, normal));
+            } else {                        //Refract
+                scattered = ray(rec.p, refract(unit_direction, normal, ri));
+            }
+            return true;
         }
 
     private:

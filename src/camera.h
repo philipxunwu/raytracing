@@ -7,11 +7,14 @@
 
 class camera {
     public: 
-        double aspect_ratio = 1.0;      //width divided by height
+        double aspect_ratio = 1.0;              //width divided by height
         int image_width = 100;
-        int samples_per_pixel = 10;     //count of random samples for each pixel square for anti-aliasing
-        int max_depth = 10;              //maximum depth for recursion
-
+        int samples_per_pixel = 10;             //count of random samples for each pixel square for anti-aliasing
+        int max_depth = 10;                     //maximum depth for recursion
+        double vfov = 90;                       //Vertical view angle
+        point3 lookfrom = point3(0, 0, 0);      //Point camera is looking from;
+        point3 lookat = point3(0, 0, -1);       //Point camera is looking at
+        vec3 vup = vec3(0, 1, 0);               //Camera-relative "up" direction;
 
         void render(const hittable& world) {
             initialize();
@@ -39,6 +42,9 @@ class camera {
         point3 pixel00;                     //location of pixel (0, 0)
         vec3 pixel_horizontal;              //distance between each pixel center horizontally
         vec3 pixel_vertical;                //distance between each pixel center vertically;
+        vec3 u;                             //unit vector pointing to camera's right
+        vec3 v;                             //unit vector pointing to camera's up
+        vec3 w;                             //unit vector pointing in the opposition direction of the camera's view
 
         void initialize() {
             image_height = int(image_width / aspect_ratio);
@@ -46,20 +52,25 @@ class camera {
 
             pixel_samples_scale_factor = 1.0 / samples_per_pixel;
 
-            camera_center = point3(0, 0, 0);
+            camera_center = lookfrom;
 
-            auto focal_length = 1.0;
-            auto viewport_height = 2.0;
+            auto focal_length = (lookfrom - lookat).length();
+            auto theta = degrees_to_radians(vfov);
+            auto h = std::tan(theta/2);
+            auto viewport_height = 2 * h * focal_length;
             auto viewport_width = viewport_height * (double(image_width) / image_height);
-            auto camera_center = point3(0, 0, 0);
 
-            auto viewport_horizontal = vec3(viewport_width, 0, 0);
-            auto viewport_vertical = vec3(0, -viewport_height, 0);
+            w = unit_vector(lookfrom - lookat);
+            u = unit_vector(cross(vup, w));
+            v = unit_vector(cross(w, u));
+
+            auto viewport_horizontal = viewport_width * u;
+            auto viewport_vertical = viewport_height * -v;
 
             pixel_horizontal = viewport_horizontal / image_width;
             pixel_vertical = viewport_vertical / image_height;
 
-            auto viewport_upper_left = camera_center - vec3(0, 0, focal_length) - viewport_horizontal / 2 - viewport_vertical / 2;
+            auto viewport_upper_left = camera_center - focal_length * w - viewport_horizontal / 2 - viewport_vertical / 2;
 
             pixel00 = viewport_upper_left + 0.5 * pixel_horizontal + 0.5 * pixel_vertical;
         }
@@ -94,12 +105,6 @@ class camera {
             auto y_coordinate = 0.5 * (unit_ray.y() + 1.0);
             return (1.0 - y_coordinate) * color(1.0, 1.0, 1.0) + y_coordinate * color(0.5, 0.7, 1.0);
         }
-        
-        
-
-
-
-
 };
 
 #endif

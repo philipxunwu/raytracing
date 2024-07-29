@@ -69,7 +69,7 @@ class dielectric: public material {
             double cos_theta = std::fmin(dot(-unit_direction, normal), 1.0);
             double sin_theta = std::sqrt(1.0 - cos_theta * cos_theta);
 
-            if (ri * sin_theta > 1.0) {     //Reflect
+            if (ri * sin_theta > 1.0 || reflectance(cos_theta, ri) > random_double()) {     //Reflect
                 scattered = ray(rec.p, reflect(unit_direction, normal));
             } else {                        //Refract
                 scattered = ray(rec.p, refract(unit_direction, normal, ri));
@@ -79,7 +79,15 @@ class dielectric: public material {
 
     private:
 
-        double refraction_index;
+        double refraction_index;    //Refractive index of material over refractive index of vacuum/air
+
+        //Helper function to acquire Schlick's Approximation of the Fresnel Factor
+        static double reflectance(double cosine, double refraction_index) {
+            auto r0 = (1 - refraction_index) / (1 + refraction_index);
+            r0 = r0 * r0;
+            return r0 + (1 - r0) * std::pow((1 - cosine), 5);
+
+        }
 
 };
 
